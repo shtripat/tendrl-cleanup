@@ -1,0 +1,12 @@
+---
+# Task file for storage nodes
+
+- name: Stop tendrl services
+  service:
+    name: tendrl-node-agent
+    state: stopped
+
+- name: Stop collectd
+  service:
+    name: collectd
+    state: stopped

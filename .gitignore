@@ -1,0 +1,15 @@
+# vim temporary files
+.*.swp
+*~
+# ansible files
+*.hosts
+*.retry
+site.yml
+# vagrant files
+.vagrant
+# ansible password lookup files
+grafana_admin_passwd
+# rpm build artefacts (created via Makefile)
+*.tar.gz
+*.rpm
+tendrl-cleanup-*

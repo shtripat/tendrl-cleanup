@@ -1,0 +1,34 @@
+---
+# This is an example of ansible playbook to cleanup and existing
+# Tendrl setup
+
+# The playbook expects inventory file with below details
+#
+# * tendrl-server: a single machine where Tendrl server (management
+# console is installed)
+#
+# * gluster-servers: gluster storage servers
+
+#
+# Cleanup of Tendrl server
+#
+
+- hosts: tendrl-server
+  user: root
+  vars:
+    # etcd db file to be deleted
+    etcd_db_path: "/var/lib/etcd/default.etcd"
+
+    # grafana db file to be deleted
+    grafana_db_file: "/var/lib/grafana/grafana.db"
+
+    # carbon data to be deleted
+    carbon_data_path: "/var/lib/carbon/whisper/tendrl/"
+
+  roles:
+    - tendrl-server
+
+- hosts: gluster-servers
+  user: root
+  roles:
+    - tendrl-storage-node

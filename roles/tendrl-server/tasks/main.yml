@@ -1,0 +1,42 @@
+---
+# Task file for storage nodes
+
+- name: Stop tendrl services
+  service:
+    name: tendrl-node-agent
+    state: stopped
+
+- name: Stop etcd service
+  service:
+    name: etcd
+    state: stopped
+
+- name: Stop grafana-server service
+  service:
+    name: grafana-server
+    state: stopped
+
+- name: Stop carbon-cache service
+  service:
+    name: carbon-cache
+    state: stopped
+
+- name: Stop httpd service
+  service:
+    name: httpd
+    state: stopped
+
+- name: Cleanup etcd data
+  file:
+    path: "{{etcd_db_path}}/"
+    state: absent
+
+- name: Cleanup grafana data
+  file:
+    path: "{{grafana_db_file}}"
+    state: absent
+
+- name: Cleanup carbon data
+  file:
+    path: "{{carbon_data_path}}/"
+    state: absent
