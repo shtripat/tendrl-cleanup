@@ -6,16 +6,17 @@
 # 1. If certificate based authentication not applicable for etcd
 # {
 #     "integration_id": "uuid id of the cluster",
-#     "etcd_host": "ip of the etcd host"
+#     "etcd_host": "fqdn of the etcd host"
 # }
 #
 # 2. If certificate based authentication is applicable for etcd
 #
 # {
 #     "integration_id": "uuid id of the cluster",
-#     "etcd_host": "ip of the etcd host",
+#     "etcd_host": "fqdn of the etcd host",
 #     "etcd_cert_file": "certificate file path",
-#     "etcd_key_file": "certificate key file path"
+#     "etcd_key_file": "certificate key file path",
+#     "etcd_ca_cert_file": "ca certificate file path"
 # }
 
 import etcd
@@ -49,7 +50,7 @@ if __name__ == "__main__":
             if 'etcd_cert_file' in cfgs:
                 kwargs.update(
                     {
-                        'ca_cert': cfgs['etcd_cert_file'],
+                        'ca_cert': cfgs['etcd_ca_cert_file'],
                         'cert': (cfgs['etcd_cert_file'], cfgs['etcd_key_file']),
                         'protocol': 'https'
                     }
